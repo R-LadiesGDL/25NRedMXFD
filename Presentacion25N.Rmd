@@ -1,0 +1,196 @@
+---
+title: "Creación de mapas con R"
+subtitle: "Subtítulo de la Presentación"
+author: "Nancy Manzo"
+institute: "R-Ladies Guadalajara"
+date: "26 de febrero 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: 
+      - default
+      - rladies
+      - rladies-fonts
+    seal: false 
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "4:3"
+      text-align: justify
+class: inverse, middle, center
+---
+class: center
+background-image: url(https://pbs.twimg.com/media/FhKHbqoXgAAns4K?format=jpg&name=4096x4096)
+background-position:
+background-size: 100%
+
+---
+class: inverse, middle, center
+
+<img style="border-radius: 50%;" src="https://pbs.twimg.com/profile_images/1336029207244263431/kgX2oR9q_400x400.jpg"
+width="150px"
+/>
+
+# R-Ladies Guadalajara 
+
+## Análisis de datos con R
+
+---
+
+# Material de trabajo
+
+Carpeta de drive:
+
+https://drive.google.com/drive/folders/14Xm0gYZV6qUk7nm8aB5LTjCiJZ8qBhZa?usp=sharing
+
+Base a trabajar: víctimas del secretariado:[clic aquí](https://docs.google.com/spreadsheets/d/e/2PACX-1vTrYBvTBhjBzuo3TZBA5xLpp9RFVs4kr76eean0eo6ZOvc9hs_4e09VcDRol8f5RsrOKsABoUCDLzEl/pub?output=csv)
+
+---
+text-align: justify
+
+# R y R studio
+
+R es un entorno y lenguaje de programación con un enfoque al análisis estadístico. R nació como una reimplementación de software libre del lenguaje S, adicionado con soporte para ámbito estático.
+
+El lenguaje está compuesto por símbolos y reglas sintácticas y semánticas, expresadas en forma de instrucciones y relaciones lógicas, mediante las cuales se construye el código fuente de una aplicación o pieza de software determinado.
+
+RStudio es un entorno de desarrollo integrado para el lenguaje de programación R, dedicado a la computación estadística y gráficos. 
+
+<b>Ambos especializado en análisis estadístico y visualización de datos.</b>
+
+---
+
+# En resumen
+
+.pull-left[
+<img
+src="https://www.masterbigdataonline.com/images/R_logo.svg.png"
+width="150px" />
+ - Software libre.
+ - Lenguaje de programación.
+ - Interfaz de una consola
+]
+.pull-right[
+<img
+src="https://i2.wp.com/mecabot-ula.org/wp-content/uploads/RStudio-Logo-Blue-Gradient.png?fit=2000%2C702"
+width="350px" />
+ - Software libre.
+ - Es un programa para manejar R -IDE (Entorno de desarrollo integrado).
+ - Interfaz de varios paneles.
+
+]
+---
+# O más claro :)
+<img
+src="https://pbs.twimg.com/media/Er3uHXpWMAE9SAh?format=jpg&name=medium"
+width="1200px" />
+
+---
+# ¿Por qué utilizar Rstudio?
+- Es un lenguaje bastante adecuado para la estadística, ya que permite manipular los datos rápidamente y de forma precisa.
+- Se puede automatizar fácilmente, gracias a la creación de scripts que automatizan procesos, por ejemplo, leer datos o hacer operaciones con los datos, y hacerlo siempre de forma automática.
+- Puede leer prácticamente cualquier tipo de datos.
+- Hasta cierto punto, es compatible con grandes conjuntos de datos.
+- Es gratuito.
+- Tiene capacidades avanzadas de gráficos, por lo que nos permite realizar gráficos y dashboards de forma que podamos presentar los resultados de forma vistosa.
+---
+# Interfaz de Rstudio
+### RStudio está dividido en cuatro paneles:
+<img
+src="https://arcruz0.github.io/libroadp/00-images/basic-r/rstudio.png"
+height="400px"
+width="900px" />
+---
+## Antes de continuar...
+
+Los paquetes en R son colecciones de funciones y conjunto de datos desarrollados por la comunidad. Estos incrementan la potencialidad de R mejorando las funcionalidades base en R, o añadiendo de nuevas. Por ejemplo, en el campo de Ciencia de los Datos cuando trabajamos con data.
+
+Podemos instalar paquetes usando la función install.packages(), dando como argumento el nombre del paquete que deseamos instalar, entre comillas.
+
+```{r echo=TRUE}
+#install.packages("ggplot2")
+```
+
+
+Una vez concluida la instalación de un paquete, podrás usar sus funciones con la función library(). Sólo tienes que llamar esta función usando como argument oel nombre del paquete que quieres utilizar.
+
+```{r echo=TRUE}
+#library("ggplot2")
+```
+---
+# Antes de iniciar
+####<b style="color:#21544c">Cometarios</b>
+#### En R puedes <b>añadir</b> comentarios en tu script, lo que esta junto al <b>#</b> es comenario.
+
+```{r}
+# Este es un comentario y no interfiere en los comandos de R.
+# Son anotaciones para nosotres.
+```
+
+####<b style="color:#21544c"> ¿Cómo ejecutar comando o líneas?</b>
+presiona<b>  Ctrl + Enter</b> | Seleccionar y dar clic en la viñeta de <b>Run</b> el cual se ejecutará en el panel de la consola.
+
+####<b style="color:#21544c">Asignación de variables</b>
+Una variable puede almacenar un objeto.
+
+```{r}
+# Mi variable x tiene un objeto de valor de 1 | tres manera de asignar nombre
+x <- 1
+x = 1
+1-> x
+```
+---
+text-align: justify
+
+# Rumbo al 25N
+
+Desde R-Ladies GDL y la Red mexicana de feminismo de datos nos sumamos a la visibilización del 25N - Día Internacional para Eliminar la Violencia contra las Mujeres.
+
+En este taller visibilizaremos los datos de víctimas de mujeres en México, donde brevemente analizaremos las muertes violentas de mujeres (feminicidios + homicidios dolosos) con datos abiertos.
+
+.pull-right[
+<img
+src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Y0AGbMb47mfPo0RY8G-I4BnKei-rKMKLhw&usqp=CAU"
+width="600px" />
+
+]
+
+---
+# Datos de víctimas del Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública (SESNSP)
+Son datos abiertos que registran la incidencia en el país, lo integra en 3 grandes dataset o conjunto de datos:
+
+- #### Cifras de Incidencia Delictiva Estatal, 2015 - septiembre 2022 (carpetas)
+- #### Cifras de Víctimas del Fuero Común, 2015 - septiembre 2022 (víctimas)
+- #### Cifras de Incidencia Delictiva Federal, 2012 - septiembre 2022 (carpetas)
+
+Cada Fiscalía reporta al SESNSP los registros mensuales de más de 13 delitos, tiene un histórico de enero 2015 a septiembre 2022.
+
+Aquí el sitio web:
+https://www.gob.mx/sesnsp/acciones-y-programas/datos-abiertos-de-incidencia-delictiva
+
+---
+# Vamos al código
+
+<img src="https://media.tenor.com/OKLkZ1Um5HIAAAAM/mad-typing.gif" width="700" height="400" />
+
+---
+class: middle, inverse
+
+.pull-left[
+# **Contacto**
+<br/>
+
+## R- Ladies Guadalajara
+]
+
+.pull-right[
+.right[
+<img style="border-radius: 90%;"
+src="https://pbs.twimg.com/profile_images/1336029207244263431/kgX2oR9q_400x400.jpg"
+width="150px" />
+
+[meetup.com/rladies-guadalajara](https://www.meetup.com/rladies-guadalajara/)<br/>
+[@RLadiesGDL](https://twitter.com/RLadiesGDL)<br/>
+[guadalajara@rladies.org](mailto:guadalajara@rladies.org)<br/>
+[Facebook: R - Ladies Guadalajara](https://www.facebook.com/RLadiesGDL)]]
