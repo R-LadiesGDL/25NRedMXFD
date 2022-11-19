@@ -44,6 +44,9 @@ Carpeta de drive:
 
 https://drive.google.com/drive/folders/14Xm0gYZV6qUk7nm8aB5LTjCiJZ8qBhZa?usp=sharing
 
+Repositorio Github
+https://github.com/R-LadiesGDL/25NRedMXFD
+
 Base a trabajar: víctimas del secretariado:[clic aquí](https://docs.google.com/spreadsheets/d/e/2PACX-1vTrYBvTBhjBzuo3TZBA5xLpp9RFVs4kr76eean0eo6ZOvc9hs_4e09VcDRol8f5RsrOKsABoUCDLzEl/pub?output=csv)
 
 ---
